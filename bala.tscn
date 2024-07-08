@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://uop4t54fhjv0"]
+
+[ext_resource type="Script" path="res://Bala.gd" id="1_nveo2"]
+[ext_resource type="Texture2D" uid="uid://cijb8xo6h81cf" path="res://bullet (2).png" id="2_u763w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jq5tb"]
+radius = 12.0
+height = 42.0
+
+[node name="Bala" type="Area2D"]
+script = ExtResource("1_nveo2")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.13687e-13)
+scale = Vector2(0.402439, 0.439394)
+texture = ExtResource("2_u763w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jq5tb")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

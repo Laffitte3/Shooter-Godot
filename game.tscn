@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm0mb5jnsxm4x"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_s05w8"]
+[ext_resource type="Texture2D" uid="uid://b0qaucwsicxoy" path="res://sky.png" id="1_u4ofx"]
+[ext_resource type="PackedScene" uid="uid://diea5wrjj76vt" path="res://player.tscn" id="3_p3mnd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4csw"]
+font_size = 60
+font_color = Color(1, 0.172549, 0.4, 1)
+outline_color = Color(1, 0.4, 0.85098, 0)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_s05w8")
+
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(581, 439)
+scale = Vector2(2.29, 2.65714)
+texture = ExtResource("1_u4ofx")
+
+[node name="player" parent="." instance=ExtResource("3_p3mnd")]
+position = Vector2(576, 309)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_top = 35.0
+offset_right = 149.0
+offset_bottom = 66.0
+
+[node name="Labe" type="Label" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0.0240298, 0.0240298, 0.0240298, 1)
+layout_mode = 2
+text = "Enemigos a matar:"
+
+[node name="LabelEnemigos" type="Label" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(0.0415072, 0.0415072, 0.0415072, 1)
+self_modulate = Color(0.0240298, 0.0240298, 0.0240298, 1)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 346.0
+offset_top = 313.0
+offset_right = 1284.0
+offset_bottom = 427.0
+text = "FELICIDADES GANASTE EL JUEGO"
+label_settings = SubResource("LabelSettings_f4csw")
+
+[node name="Button Reiniciar" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 94.0
+offset_right = 614.0
+offset_bottom = 268.0
+theme_override_font_sizes/font_size = 80
+text = "REINICIAR"
+
+[node name="Button Salir" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 298.0
+offset_right = 617.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 80
+text = "SALIR"

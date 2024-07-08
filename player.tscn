@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://diea5wrjj76vt"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_kuixx"]
+[ext_resource type="Texture2D" uid="uid://csm7tolu1oqdj" path="res://cuphead_idle.png" id="2_p86em"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wjq1r"]
+radius = 29.888
+height = 81.9134
+
+[sub_resource type="LabelSettings" id="LabelSettings_or1u5"]
+font_size = 28
+font_color = Color(1, 0.678431, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ic6w"]
+bg_color = Color(1, 0.0941176, 0.0509804, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqqjx"]
+size = Vector2(100, 100)
+
+[node name="player" type="CharacterBody2D" groups=["MiJugador"]]
+position = Vector2(1.99997, -5.00002)
+rotation = -0.0610865
+script = ExtResource("1_kuixx")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p86em")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.59698
+shape = SubResource("CapsuleShape2D_wjq1r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.24
+drag_top_margin = 0.25
+drag_right_margin = 0.31
+drag_bottom_margin = 0.21
+editor_draw_drag_margin = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 465.0
+offset_bottom = 39.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "HP: "
+label_settings = SubResource("LabelSettings_or1u5")
+
+[node name="HP ProgressBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_styles/fill = SubResource("StyleBoxFlat_1ic6w")
+value = 100.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_yqqjx")
+
+[node name="Timer" type="Timer" parent="Area2D"]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Area2D/Timer" to="." method="_on_timer_timeout"]
