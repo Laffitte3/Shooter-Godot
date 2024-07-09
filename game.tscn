@@ -41,28 +41,32 @@ modulate = Color(0.0415072, 0.0415072, 0.0415072, 1)
 self_modulate = Color(0.0240298, 0.0240298, 0.0240298, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
-offset_left = 346.0
-offset_top = 313.0
-offset_right = 1284.0
-offset_bottom = 427.0
+[node name="VictoriaCanvasLayer2" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Label" type="Label" parent="VictoriaCanvasLayer2"]
+offset_left = 136.0
+offset_top = 107.0
+offset_right = 1074.0
+offset_bottom = 221.0
 text = "FELICIDADES GANASTE EL JUEGO"
 label_settings = SubResource("LabelSettings_f4csw")
 
-[node name="Button Reiniciar" type="Button" parent="Label"]
-layout_mode = 0
-offset_left = 206.0
-offset_top = 94.0
-offset_right = 614.0
-offset_bottom = 268.0
+[node name="Button Reiniciar" type="Button" parent="VictoriaCanvasLayer2"]
+offset_left = 93.0
+offset_top = 297.0
+offset_right = 501.0
+offset_bottom = 471.0
 theme_override_font_sizes/font_size = 80
 text = "REINICIAR"
 
-[node name="Button Salir" type="Button" parent="Label"]
-layout_mode = 0
-offset_left = 209.0
-offset_top = 298.0
-offset_right = 617.0
-offset_bottom = 472.0
+[node name="Button Salir" type="Button" parent="VictoriaCanvasLayer2"]
+offset_left = 682.0
+offset_top = 305.0
+offset_right = 1090.0
+offset_bottom = 479.0
 theme_override_font_sizes/font_size = 80
 text = "SALIR"
+
+[connection signal="pressed" from="VictoriaCanvasLayer2/Button Reiniciar" to="." method="_on_button_reiniciar_pressed"]
+[connection signal="pressed" from="VictoriaCanvasLayer2/Button Salir" to="." method="_on_button_salir_pressed"]
